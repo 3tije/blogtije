@@ -33,11 +33,11 @@ function render(){
   const filtered=ARTICLES.filter(a=>(activeCat==="Semua"||a.category===activeCat)&&(!q||`${a.title} ${a.summary} ${a.category}`.toLowerCase().includes(q)));
   const feat=filtered.find(a=>String(a.featured)==="true"||a.featured===true)||filtered[0];
   $("#featured").innerHTML=feat?`<a class="featured-card" href="${articleUrl(feat)}">
-    <img src="${esc(feat.imageUrl||placeholder)}" alt="">
+    <img src="${esc(feat.imageUrl||placeholder)}" alt="${esc(feat.title)}">
     <div class="featured-copy"><div class="meta"><span>${esc(feat.category||"Catatan")}</span><span>•</span><span>${fmtDate(feat.publishedAt)}</span></div>
     <h2>${esc(feat.title)}</h2><p>${esc(feat.summary||"")}</p><span class="readmore">Baca selengkapnya →</span></div></a>`:"";
   const rest=filtered.filter(a=>!feat||a.id!==feat.id);
-  $("#articleGrid").innerHTML=rest.map(a=>`<a class="card" href="${articleUrl(a)}"><img src="${esc(a.imageUrl||placeholder)}" alt=""><div class="card-body">
+  $("#articleGrid").innerHTML=rest.map(a=>`<a class="card" href="${articleUrl(a)}"><img src="${esc(a.imageUrl||placeholder)}" alt="${esc(a.title)}"><div class="card-body">
     <div class="meta"><span>${esc(a.category||"Catatan")}</span><span>•</span><span>${fmtDate(a.publishedAt)}</span></div>
     <h3>${esc(a.title)}</h3><p>${esc(a.summary||"")}</p></div></a>`).join("");
   $("#emptyState").classList.toggle("hidden",filtered.length>0);
