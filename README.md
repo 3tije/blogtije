@@ -175,3 +175,12 @@ Blog publik dan Writing Studio menggunakan ikon MyTije yang sama. Ikon tersedia 
 ## Login final
 
 URL backend cukup dikonfigurasi satu kali di `assets/config.js`. Setelah itu halaman login hanya meminta Password Studio. Session perangkat disimpan 30 hari dan diverifikasi ke backend saat dibuka kembali.
+
+
+## SEO Google
+
+- `robots.txt` mengizinkan crawler dan mengecualikan `/studio/`.
+- `sitemap.xml` diperbarui otomatis melalui GitHub Actions berdasarkan artikel dengan status `published` di Apps Script.
+- Workflow `Update Blog TIJE sitemap` berjalan setiap jam dan dapat dijalankan manual melalui tab **Actions**.
+- Setelah workflow pertama berhasil, cek `https://blog.mytije.com/sitemap.xml`, lalu kirim sitemap tersebut di Google Search Console.
+- URL artikel saat ini tetap menggunakan `article.html?slug=...` agar kompatibel dengan arsitektur Blog TIJE yang sudah berjalan.
